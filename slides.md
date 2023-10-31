@@ -21,6 +21,8 @@ transition: slide-left
 css: unocss
 # Make content selectable/copyable
 selectable: true
+# Make slides downloadable as PDF
+download: true
 ---
 
 # React.js
