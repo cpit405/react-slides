@@ -32,21 +32,23 @@ download: true
 
 # Outline
 - Introduction to Single Page Applications
-- Introduction to React and its importance in modern web development.
-- Setting up your development environment: Node.js, npm, and Create React App.
-- Creating your first React component.
-- JSX (JavaScript XML) syntax and its role in React.
-- Building your first "Hello, React!" application.
+- Introduction to React
+- Setting up your development environment
+- Creating your first React component
+- JSX (JavaScript XML) syntax
+- Building your first React application
+- React Components
+- Props
+- State
+- Hooks
 
 ---
 
 # Single Page Applications (SPAs)
+- ![](/images/single-page-app-vs-multi-page-app.png)
 
-
-### A single-page application (SPA) is a web application or website that loads a single HTML page and dynamically updates that page as the user interacts with the application. 
-
-### This is in contrast to traditional multi-page applications (MPAs), which load a new HTML page for each new view or interaction.
-
+- Single-page applications (SPAs) load a single HTML page and dynamically update .
+- Traditional multi-page applications (MPAs) load a new HTML page for each new view or interaction.
 ---
 
 # Why Single Page Applications (SPAs)
@@ -115,15 +117,31 @@ download: true
 
 ---
 
-# Getting Started in React
-- To get started in React, you will need to install the following:
-  - Node.js
-  - npm or yarn
-- Once you have installed Node.js and npm, you can create a new React project by running the following command:
+# Getting Started in React (I)
+## Installation
 
-```shell
-npx create-react-app hello-world
-```
+- To get started in React, you will need to download and install the following:
+  - [Node.js](https://nodejs.org) because we'll need npm and npx:
+    - **npm** is the package manager for the JavaScript.
+    - **npx** is a package executer that executes javascript packages
+  - Browser extensions for debugging your React app:
+    - React Developer Tools for [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) OR [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
+  - An editor such as [Visual Studio Code](https://code.visualstudio.com/), which supports React.js out of the box.
+
+## Alternatively, use a cloud-based IDE
+- [codesandbox.io](https://codesandbox.io/)
+- [replit.com](https://replit.com/)
+
+---
+
+# Getting Started in React (II)
+## Create a React.js app
+
+- Create a new React project by running the following command:
+
+  ```shell
+  npx create-react-app hello-world
+  ```
 
 - To start the development server, run:
 
@@ -132,12 +150,13 @@ npm start
 ```
 
 - Open the app in your web browser
-- Next, edit the source code in your code editor.
+- Edit the source code in your code editor.
 
 
 ---
 
-# Getting started in React: Demo
+# Getting started in React (III) 
+## Demo
 
 <iframe src="https://codesandbox.io/embed/first-react-app-8m9dwz?fontsize=14&hidenavigation=1&theme=light"
      style="width:100%; height:85%; border:0; border-radius: 4px; overflow:hidden;"
@@ -148,13 +167,13 @@ npm start
 
 ---
 
-# Your first react app (`public/index.html`)
-- In a React project, the public folder is the location where the main HTML file (`index.html`) and other static assets such as images, fonts, and favicon are stored.
-- Your React project's main HTML file is located at  `public/index.html`.
+# Main HTML file `public/index.html`
+- React has a single/main HTML file (`index.html`) located in the _public_ folder.
+- The _public_ folder is the location where the main HTML file and other static assets such as images, fonts, and favicon are stored.
 - It is the entry point of the application and contains a root DOM element where the React application is mounted.
 - When the React application is built, the contents of the public folder are copied to the build folder, and the index.html file is updated to include the necessary links to the built CSS and JavaScript files
 
-```html{monaco}
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -169,7 +188,7 @@ npm start
 
 ---
 
-# Your first react app (`src/index.js`)
+# Main script file `src/index.js`
 
 - In a React project, `src/index.js` is the entry point of the application. 
 - This file is responsible for rendering the root component of the application and mounting it to the DOM.
@@ -192,7 +211,8 @@ root.render(
 
 ---
 
-# Your first react app (`src/App.js`)
+# Main component file `src/App.js`
+
 - In a React project, `src/App.js` is a JavaScript file that contains the main component of the application.
 - This component is usually called App and is responsible for rendering the main content of the application.
 - The App component is typically composed of other components that are responsible for rendering specific parts of the UI.
@@ -209,6 +229,29 @@ function App() {
 }
 
 export default App;
+```
+
+
+---
+
+# JSX
+
+- The syntax you have seen in the previous slide is called **JSX** (JavaScript Syntax Extension).
+- JSX looks like HTML where elements are wrapped in one single parent element.
+- In JSX, some HTML attributes need to be named differently:
+  - The HTML `class` attributed is called `className` in JSX.
+  - The HTML `for` attribute is called `htmlFor` in JSX.
+
+```javascript
+function App() {
+  return (
+    <div>
+        <div className="App">
+        <label htmlFor="name">Name:</label>
+        <input id="name" type="text">
+    </div>
+  )
+}
 ```
 
 ---
@@ -300,6 +343,8 @@ const Button = () => {
 layout: two-cols-header
 ---
 
+
+
 # React Components: Props (I)
 
 ::left::
@@ -348,7 +393,7 @@ layout: two-cols-header
 _Image.js_
 
 ```javascript
-const Image = ({url, text}) {
+const Image = ({url, text}) => {
   return (
     <img src={url} alt={text}>
   );
@@ -374,7 +419,7 @@ const App = () => {
 _Image.js_
 
 ```javascript
-const Image = (props) {
+const Image = (props) => {
   return (
     <img src={props.url} alt={props.text}>
   );
@@ -460,3 +505,64 @@ export default Button;
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
+
+---
+layout: two-cols-header
+---
+# React Components: Props vs State
+
+| Props | State |
+|------------------|-----------------------|
+| Props are immutable (read-only)| State is mutable (can be changed) |
+| Props get passed to the component from the parent| State can be changed within the component itself |
+| Props are received as functional parameter| State is received via hooks inside the component | 
+
+::left::
+<div class="code-section">
+```javascript
+//Button.js
+function handleClick() {
+    console.log("I have been clicked!");
+}
+
+const Button = ({ name }) => {
+    return <button onClick={handleClick}> {name}</button>
+}
+export default Button;
+// App.js
+<Button name="Sign up" />;
+```
+</div>
+::right:: 
+<div class="code-section">
+```javascript
+//Button.js
+const Button = ({ name }) => {
+    const [buttonText, setButtonText] = useState(name);
+    function handleClick() {
+        setButtonText("I have been clicked!");
+    }
+    return <button onClick={handleClick}>{buttonText}</button>
+}
+export default Button;
+// App.js
+<Button name="Sign up" />;
+```
+</div>
+
+
+---
+
+# Fetch API Demo
+
+
+## React Router
+
+- Routing is done via a third party library called React Router (`react-router-dom`)
+- React Router is a library for managing client-side routing in React applications.
+
+- You can install it using npm
+  ```shell
+  npm install react-router-dom 
+  ```
+- 

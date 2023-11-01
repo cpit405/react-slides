@@ -9,10 +9,10 @@
   "dependencies": {
     "@slidev/cli": "^0.42.10",
     "@slidev/theme-default": "*",
-    "@slidev/theme-seriph": "*",
     "@vueup/vue-quill": "^1.2.0"
   },
   "devDependencies": {
+    "@iconify-json/logos": "^1.1.37",
     "@iconify-json/quill": "^1.1.7",
     "playwright-chromium": "^1.38.1"
   }
