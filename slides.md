@@ -926,7 +926,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 _Users.js_
 ```javascript
-const = Users() => {
+const Users = () => {
   return (
     <div>
       <Link to="1">User 1</Link> |
@@ -961,7 +961,20 @@ const User = () => {
    </div>
  );
 }
+export default User;
 ```
+
+---
+
+# React Router Demo
+[![Edit react-router-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-router-example-z63d7g?fontsize=14&hidenavigation=1&module=%2Fsrc%2FApp.js&theme=dark)
+
+<iframe src="https://codesandbox.io/embed/react-router-example-z63d7g?fontsize=14&hidenavigation=1&module=%2Fsrc%2FApp.js&theme=dark"
+     style="width:100%; height:75%; border:0; border-radius: 4px; overflow:hidden;"
+     title="react-router-example"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
 
 ---
 
