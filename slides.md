@@ -26,22 +26,25 @@ download: false
 ---
 
 # React.js
-
+<div class="absolute left-30px bottom-30px">
+Fall 2023 &copy; Khalid Alharbi, Ph.D.
+</div>
 
 ---
 
 # Outline
-- Introduction to Single Page Applications
-- Introduction to React
+- Single Page Applications (SPAs)
+- React.js
 - Setting up your development environment
-- Creating your first React component
-- JSX (JavaScript XML) syntax
-- Building your first React application
-- React Components
+- Creating your first React app
+- JSX
+- React components
 - Props
 - State
 - AJAX and APIs
 - Hooks
+- Routing with React Router
+- Practical Projects
 
 ---
 
@@ -1043,5 +1046,9 @@ Create a React application that displays the current weather conditions for a sp
 ---
 layout: center
 ---
+
 > The most effective way to learn React is to practice by building small projects and reading the official React documentation and tutorials at [react.dev](https://react.dev).
 
+---
+layout: end
+---
