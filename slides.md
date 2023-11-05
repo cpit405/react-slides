@@ -837,19 +837,25 @@ layout: two-cols-header
 ::left::
 ### Usage:
 
-1. Declare routes in the main component (`App.js`)
+1. Declare routes in the main/root component (`App.js`)
 
-2.  Link to routes anywhere using the `<Link>` component.
+2. Link to routes using the `<Link>` component in any component.
 
 ::right::
 
 ```javascript
+import {BrowserRouter, Routes, Route, Link } from "react-router-dom";
+const App = () => {
+  return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
     </BrowserRouter>
+  );
+}
+export default App;
 ```
 
 ```javascript
