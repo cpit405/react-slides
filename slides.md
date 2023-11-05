@@ -8,7 +8,7 @@ class: text-center
 # https://sli.dev/custom/highlighters.html
 highlighter: shiki
 # show line numbers in code blocks
-lineNumbers: false
+lineNumbers: true
 # some information about the slides, markdown enabled
 info: | 
     React.js
@@ -40,6 +40,7 @@ download: true
 - React Components
 - Props
 - State
+- AJAX and APIs
 - Hooks
 
 ---
@@ -96,8 +97,10 @@ download: true
 - **2013**: React is open-sourced, allowing external developers to use and contribute to its development.
 - **2015**: React gains rapid popularity within the developer community for its component-based architecture, virtual DOM, and one-way data flow.
 - **2015**: React Native is introduced, extending React's concepts to mobile app development, enabling cross-platform app development.
-- **2016**: The release of React Fiber, a major internal reimplementation of React, brings improved performance and concurrency.
-- **2018**: The introduction of React Hooks simplifies state management and logic in functional components.
+- **2016**: React switched to major versions and announces the new 15.0 release, which follows the previous 0.14 version. This was done to indicate that Facebook has been using React in production for a long time.
+- **2016**: [Create React App](https://create-react-app.dev/) was announced as an easy way to create and build React apps.
+- **2018**: The announcement of React Hooks, which adds new functions that simplify state management without writing a class component.
+- **2022**: React 18 is released with new features such as new hook for generating unique IDs on both the client and server.
 
 ---
 
@@ -128,7 +131,7 @@ download: true
     - React Developer Tools for [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) OR [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
   - An editor such as [Visual Studio Code](https://code.visualstudio.com/), which supports React.js out of the box.
 
-## Alternatively, use a cloud-based IDE
+## Alternatively, we can use a cloud-based IDE
 - [codesandbox.io](https://codesandbox.io/)
 - [replit.com](https://replit.com/)
 
@@ -164,6 +167,15 @@ npm start
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
   ></iframe>
+
+---
+layout: center
+---
+# React has three main files:
+
+### 1. Main HTML file `public/index.html`
+### 2. Main script file `src/index.js`
+### 3. Main component file `src/App.js`
 
 ---
 
@@ -237,22 +249,15 @@ export default App;
 # JSX
 
 - The syntax you have seen in the previous slide is called **JSX** (JavaScript Syntax Extension).
-- JSX looks like HTML where elements are wrapped in one single parent element.
-- In JSX, some HTML attributes need to be named differently:
+
+1. JSX looks like HTML where elements are wrapped in one single parent element.
+2. Some HTML attributes need to be named differently:
   - The HTML `class` attributed is called `className` in JSX.
   - The HTML `for` attribute is called `htmlFor` in JSX.
+3. JavaScript code must be wrapped between two curly braces `{}`.
 
-```javascript
-function App() {
-  return (
-    <div>
-        <div className="App">
-        <label htmlFor="name">Name:</label>
-        <input id="name" type="text">
-    </div>
-  )
-}
-```
+<iframe width="100%" height="50%" src="//jsfiddle.net/kalharbi/m2j3skfw/embedded/js,html,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
 
 ---
 
@@ -269,8 +274,6 @@ This makes it easier to debug and maintain the application.
 ---
 
 # React Components Example
-
-- Example of a simple React functional component for a button:
 
 _Button.js_
 
@@ -290,11 +293,13 @@ export default Button;
 
 # React Components: Class Components
 
-- A class component in React is a JavaScript class that extends the React.Component class.
+- A class component in React is a JavaScript class that extends the `React.Component` class.
 - Class components are more verbose and complex to write than functional components.
-- To imeplement a class component, we need to create a class tht extends the React.Component class.
+- To implement a class component, we need to create a class that extends the React.Component class.
 
 ```javascript
+import React from 'react';
+
 class Button extends React.Component{
   render() {
     return (
@@ -335,7 +340,7 @@ const Button = () => {
 | Class components | Functional components |
 |------------------|-----------------------|
 | Define a state object and lifecycle hooks to manage the component's state and behavior | Define a function that returns JSX |
-| Can use the `this` keyword to access the component's state and methods | Cannot use the this keyword |
+| Can use the _this_ keyword to access the component's state and methods | Cannot use the _this_ keyword |
 | Are more verbose and complex to write | Are more concise and easier to write |
 | There are some cases where class components may be necessary, such as when you need to use lifecycle hooks or manage complex state. | It is recommended to use functional components whenever possible, as they are more concise and easier to write |
 
@@ -345,13 +350,12 @@ layout: two-cols-header
 
 
 
-# React Components: Props (I)
+# React Components: Props
 
 ::left::
 
-- Components can receive data from their parent component through props.
-- Props short for "properties". 
-- props are how we pass data from one React component to another. 
+- Components can receive data from their parent component through props (short for "properties"). 
+- Props are how we pass data from one React component to another. 
 - Props are immutable, which means that they are read-only and cannot be changed by the child component.
 - To pass props to a component, you simply add them as attributes to the component element.
 
@@ -382,9 +386,9 @@ const App = () => {
 layout: two-cols-header
 ---
 
-# React Components: Props (II)
+# React Components: Receiving Props
 
-- There are two ways to pass multiple props to a component:
+#### There are two ways a component receives multiple props from a parent component:
 
 ::left::
 
@@ -441,14 +445,16 @@ const App = () => {
 ---
 
 # React Components: Props Demo
-- Please see `src/Image.js` and `src/Footer.js`.
-
-<iframe src="https://codesandbox.io/embed/competent-lucy-lhwrqn?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:85%; border:0; border-radius: 4px; overflow:hidden;"
-     title="competent-lucy-lhwrqn"
+- Please see
+  -  `src/Button.js`, `src/Header.js`, and `src/Footer.js` for receiving props as an object.
+  - `src/Image.js` for receiving props as a list of variables.
+<iframe src="https://codesandbox.io/embed/react-props-example-lhwrqn?fontsize=14&hidenavigation=1&module=%2Fsrc%2FApp.js&theme=dark"
+     style="width:100%; height:70%; border:0; border-radius: 4px; overflow:hidden;"
+     title="react-props-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
+
 
 
 ---
@@ -461,6 +467,25 @@ const App = () => {
 - When the state changes, React re-renders the component.
 - In React, a __hook__ is a special function that lets you use React state and other React features without writing a class.
 - `useState` is a React hook that lets you add state to a function component. 
+
+---
+
+# React Components: `useState`
+- In programming "**State**" refers to stored information at a particular point in time.
+  - Think of _state_ as a fancy name for saying variable 🤔
+  - State can change over time, and each change represents a different state.
+- `useState` is a React Hook that lets you add a state variable to your component.
+
+```javascript
+const [state, setState] = useState(initialState);
+```
+
+- `useState` takes one parameter, initialState, which holds the initial value of the state. 
+
+- `useState` returns an array with exactly two values:
+  - The current value of the state.
+  - The set function that lets you change/update the state to a different value, which will cause React to re-render the component.
+
 
 ---
 
@@ -497,11 +522,26 @@ export default Button;
 
 ---
 
-# React Components State Demo
+# React Components State Demo (I)
+[![Edit use-state-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/use-state-example-sfhr2n?fontsize=14&hidenavigation=1&module=%2Fsrc%2FButton.js&theme=dark)
 
-<iframe src="https://codesandbox.io/embed/use-state-example-sfhr2n?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:85%; border:0; border-radius: 4px; overflow:hidden;"
+<iframe src="https://codesandbox.io/embed/use-state-example-sfhr2n?fontsize=14&hidenavigation=1&module=%2Fsrc%2FButton.js&theme=dark"
+     style="width:100%; height:75%; border:0; border-radius: 4px; overflow:hidden;"
      title="use-state-example"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
+
+---
+
+# React Components State Demo (II)
+
+[![Edit react-state-like-dislike](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-state-like-dislike-66qgjj?fontsize=14&hidenavigation=1&module=%2Fsrc%2FFeedback.js&theme=dark)
+
+<iframe src="https://codesandbox.io/embed/react-state-like-dislike-66qgjj?fontsize=14&hidenavigation=1&module=%2Fsrc%2FFeedback.js&theme=dark"
+     style="width:100%; height:85%; border:0; border-radius: 4px; overflow:hidden;"
+     title="react-state-like-dislike"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
@@ -553,16 +593,442 @@ export default Button;
 
 ---
 
-# Fetch API Demo
+## AJAX and APIs
+- Data is essential for any application to function.
+- Fetching and sending data provides the information that our components need to work.
+- There are two ways to work with APIs and use fetch in React apps.
+  - Using regular `fetch` and `setState` hook
+  - Using the `useEffect` hook
+
+---
+layout: two-cols
+---
+# Using `fetch` and `setState`
+- This example shows how to fetch data in response to a user click event.
+- We send the request in the event handler and `setData` is the function that updates the _data_ state. 
+-  The component renders the fetched data once the data becomes available.
+
+<v-click>
+
+- Pros:
+  - Easy to implement
+  - Useful when the fetch request is triggered by a user interaction, such as a click, typing, or scrolling
+- Cons:
+  - Not recommended for fetching data on mount
+  - Can lead to unnecessary re-renders
+</v-click>
+::right::
+
+<iframe width="100%" height="100%" src="//jsfiddle.net/kalharbi/emjo2avq/embedded/js,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+---
+
+# Using `fetch` and `setState` Demo
+
+[![Edit react-regular-fetch-async-await](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-regular-fetch-async-await-rrx4j9?fontsize=14&hidenavigation=1&module=%2Fsrc%2FGitHubUser.js&theme=dark)
+
+<iframe src="https://codesandbox.io/embed/react-regular-fetch-async-await-rrx4j9?fontsize=14&hidenavigation=1&module=%2Fsrc%2FGitHubUser.js&theme=dark"
+     style="width:100%; height:70%; border:0; border-radius: 4px; overflow:hidden;"
+     title="react-regular-fetch-async-await"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
+---
+layout: two-cols-header
+---
+
+# Using `fetch ` and `useEffect`
+
+::left::
+
+<v-click>
+
+- We first import `useState`, and `useEffect` from the `react` library.
+
+</v-click>
+
+<v-click>
+
+- We define a functional component called _Article_ that takes an id as _props_.
+
+</v-click>
+
+<v-click>
+
+- Inside this component, we declare a state variable `data` and a function `setData` to update this state. The initial value of data is `null`
+
+</v-click>
+
+<v-click>
+
+- We then declare the `useEffect` hook and perform a `fetch` request inside it. More on this hook next.
+
+</v-click>
+
+<v-click>
+
+- We convert the response to JSON and use `setData` to update our state variable _data_.
+
+</v-click>
 
 
-## React Router
+::right::
 
-- Routing is done via a third party library called React Router (`react-router-dom`)
-- React Router is a library for managing client-side routing in React applications.
+```javascript {all}
+import {useState, useEffect} from "react";
 
-- You can install it using npm
-  ```shell
-  npm install react-router-dom 
-  ```
-- 
+const Article = ({ id }) => {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+      const fetchData = async () => {
+          const response = await fetch(
+            `https://jsonplaceholder.typicode.com/posts/${id}`);
+          const data = await response.json();
+          setData(data);
+      }
+      fetchData();
+  }, [id]);
+
+  return (
+      <div className="App">
+          {data && <div>{JSON.stringify(data)}</div>}
+      </div>
+  );
+}
+```
+
+
+---
+
+#  `useEffect`
+- `useEffect` is a built-in hook in React that allows you to perform side effects in your function components. 
+- A side effect could be data fetching, subscribing to a service, manually changing the DOM, etc.
+
+![](/images/useEffect.png)
+
+
+---
+
+# Using `fetch ` and `useEffect`
+- `useEffect` is a React hook hook for performing side effects in components.
+
+<v-click>
+
+- When to use `fetch` and `useEffect`?
+  - When the data being fetched is essential to the component's initial render
+  - When the data being fetched is updated frequently
+
+</v-click>
+
+<v-click>
+
+- Fetching data from within a React component requires us to orchestrate both the `useEffect` and `useState` hooks. 
+  - The `useEffect` hook is used to make the fetch request.
+  - The `useState` hook is used to store the response in state
+
+</v-click>
+
+<v-click>
+
+- Pros
+  - Can fetch data on mount or whenever other dependencies change
+  - Avoids unnecessary re-renders
+- Cons
+  - More complex to use
+
+</v-click>
+
+---
+
+# Using `fetch ` and `useEffect` (Demo)
+[![Edit react-fetch-useEffect](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-fetch-useeffect-nmd9py?fontsize=14&hidenavigation=1&module=%2Fsrc%2FGitHubUser.js&theme=dark)
+
+<iframe src="https://codesandbox.io/embed/react-fetch-useeffect-nmd9py?fontsize=14&hidenavigation=1&module=%2Fsrc%2FGitHubUser.js&theme=dark"
+     style="width:100%; height:75%; border:0; border-radius: 4px; overflow:hidden;"
+     title="react-fetch-useEffect"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
+
+---
+layout: center
+---
+
+![](/images/react-router-color.png)
+<hr />
+
+---
+
+# Routing
+
+- Routing helps direct users to different pages based on the URL they have entered or clicked.
+- In traditional multi-page applications (MPAs), the browser requests a document from a web server and renders the HTML sent from the server.
+- In Single Page Applications (SPAs), routing refers to the ability to navigate between different parts of the application without a full page refresh.
+- In single-page applications (SPAs), routing is done on the client side without making another request for another document from the server.
+- This enables faster user experiences and allows you to define routes for the SPA application and render different components based on the current route.
+
+---
+
+# Routing in React
+
+- Recall that React is often considered the "V" in MVC, which stands for Model-View-Controller.
+  - React does not have a built-in concept of a "Controller" or routing.
+  - Routing functionality can be added to a React application using third-party libraries
+- [React Router](https://reactrouter.com) is a third-party library used for managing routing in React applications.
+  - It adds routing to Single Page Applications (SPA) and navigation without page reload.
+  - It enables component-based routing, where different routes can render different components.
+  - It provides tools to easily retrieve and use URL parameters and query strings.
+  - It supports programmatic navigation, allowing you to trigger navigation from functions or hooks.
+
+
+---
+
+# React Router
+- React Router can be installed via npm: `npm install react-router-dom` and use it as follows:
+
+```javascript
+import React from 'react';
+import {BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Home from './Home';
+import About from './About';
+import NotFound from './NotFound';
+
+const App = () => {
+  return (
+    <BrowserRouter>
+      <nav>
+        <Link to="/">Home</Link> | 
+        <Link to="/about">About</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+export default App;
+```
+
+---
+
+# React Router: Main Concepts
+  - **Routes:** Routes group the different route for pages or views in your application.
+  - **Route:** An object or Route Element typically with a shape of  `{ path, element }` or `<Route path element>`
+  - **Navigation:** Any change to the URL. There are two ways to navigate in React Router:
+    - **Declarative navigation:** means that you define your routes upfront and React Router will take care of rendering the appropriate components based on the current URL.
+    - **Imperative navigation** means that you explicitly trigger navigation events, such as clicking a button or calling a function.
+
+---
+layout: two-cols-header
+---
+
+# React Router: Declarative Navigation
+- We define routes explicitly and link to them using the `<Link>` component.
+  - The `<Link>` component is a declarative way to navigate between routes. It renders an HTML `<a>` tag with a `href` attribute that points to the desired route.
+
+::left::
+### Usage:
+
+1. Declare routes in the main component (`App.js`)
+
+2.  Link to routes anywhere using the `<Link>` component.
+
+::right::
+
+```javascript
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
+    </BrowserRouter>
+```
+
+```javascript
+<Link to="/">Home</Link>
+<Link to="/signup">Sign up</Link>
+```
+
+---
+layout: two-cols-header
+---
+
+# React Router: Imperative navigation
+
+- To navigate in code (programmatically), we use the `useNavigate` hook in React Router.
+
+::left::
+
+### Usage:
+
+1. Import `BrowserRouter`, `Routes`, and `Route` from `react-router-dom` library.
+2. Declare routes in the main component (`App.js`).
+3. Use the `useNavigate` hook anywhere you want to navigate programmatically to a route.
+
+::right::
+
+```javascript
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
+    </BrowserRouter>
+```
+
+```javascript
+import {useNavigate} from 'react-router-dom';
+const Header = () => {
+    const navigate = useNavigate();
+    function handleClick() {
+        navigate('/sign-up');
+    }
+    return (
+        <div>
+            <button onClick={handleClick}>Sign up</button>
+        </div>
+    )
+};
+export default Header;
+```
+
+---
+
+# React Router: Nested Routes, URL parameters, and Query parameters
+
+- Nested routing allows you to organize your routes into hierarchies, making it easier to manage complex navigation structures.
+- We can use nested routes to access **URL parameters** and **query parameters** using the `useParams` and `useSearchParams` hooks respectively.
+![](/images/url-params-query-params.png)
+
+---
+layout: two-cols-header
+---
+
+## React Router: Nested Routes Example
+::left::
+_App.js_
+```javascript
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+    <BrowserRouter>
+      <Routes>
+        <Route path="/users" element={<Users />}>
+          <Route path=":id" element={<User />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+```
+
+_Users.js_
+```javascript
+const = Users() => {
+  return (
+    <div>
+      <Link to="1">User 1</Link> |
+      <Link to="2">User 2</Link>
+      <Routes>
+        <Route path=":id" element={<User />} />
+      </Routes>
+    </div>
+  );
+}
+```
+
+::right::
+
+_User.js_
+```javascript
+import { 
+  useParams, 
+  useSearchParams 
+  } from 'react-router-dom';
+
+const User = () => {
+ const params = useParams();
+ const [searchParams] = useSearchParams();
+ const id = params.id;
+ const query = searchParams.get('query');
+
+ return (
+   <div>
+     <p>ID: {id}</p>
+     <p>Query: {query}</p>
+   </div>
+ );
+}
+```
+
+---
+
+# Practical Projects: Integrating React, Routing, and APIs (I)
+## Project 1: Link Shrinker: Shorten and Share Your Links
+
+Develop a React application that enables users to shorten long URLs into concise and shareable links. The application should have the following features:
+
+- URL Shortening: Takes a long URL and returns a shortened link.
+- Custom short URLs: Allow users to create custom shortened URLs, making them more customizable.
+
+---
+
+# Practical Projects: Integrating React, Routing, and APIs (I)
+## Project 1: Link Shrinker: Shorten and Share Your Links
+
+TODO: Link to codesandbox.io/.io
+
+---
+
+# Practical Projects: Integrating React, Routing, and APIs
+## Project 2: Recipe app: search for recipes
+
+Create a React application that allows users to search for recipes.
+
+- Use an API, such as [Edamam API](https://www.edamam.com/) to fetch recipe data.
+- Implement routing using React Router to allow users to view individual recipes.
+- Display recipe details, including ingredients, instructions, and images.
+
+---
+
+# Practical Projects: Integrating React, Routing, and APIs
+## Project 2: Recipe app: search for recipes
+
+TODO: Link to codesandbox.io/.io
+
+---
+
+# Putting all things together
+
+It's time to put your React skills into test and build a React app. In a group of two students, create one of the following apps:
+
+<hr />
+<br />
+
+#### 1) Schedule Mate: Find the Perfect Meeting Time
+Create a React application that simplifies scheduling meetings by finding the most suitable time slot that works for all participants. The app should offer basic scheduling features akin to [when2meet.com/](https://www.when2meet.com/).
+
+
+#### 2) Weather Wonder: Find current weather conditions
+
+Create a React application that displays the current weather conditions for a specific location with routing options to see more details.
+
+---
+
+# Wrapping up
+- **React.js**: is a JavaScript library for building user interfaces (UIs) based on reusable components.
+- **Props**: immutable (read-only) data passed from parent components to child components to control their behavior and content.
+- **State**: mutable (changeable) data managed by a component, determining its appearance and value.
+- **JSX**: an extension to JavaScript syntax that allows embedding HTML-like code for UI description.
+- **React hooks**: special functions that let you "hook into" React state and lifecycle features in functional components.
+  - The `useState` hook allows you to manage local state in functional components.
+  - The `useEffect` hook allows you to perform side effects in functional components, such as data fetching, subscriptions, etc.
+- **React Router**: a powerful routing library that defines routes and handles navigation between different components.
+
+---
+layout: center
+---
+> The most effective way to learn React is to practice by building small projects and reading the official React documentation and tutorials at [react.dev](https://react.dev).
+

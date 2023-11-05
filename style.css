@@ -8,13 +8,19 @@ table th, table td {
 }
 
 table th {
-  background-color: #565656;
-  color: white;
+  background-color: #3f6149;
+  color: #fff;
 }
 
 table tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #bdbdbd;
+  color: #0c5321;
 }
+
 .code-section {
 	border: 2px solid #565656;
+}
+
+pre.slidev-code{
+  margin-right: 5%;
 }
