@@ -366,7 +366,7 @@ layout: two-cols-header
 _Button.js_
 
 ```javascript
-const Button = ({title}) {
+const Button = ({title}) => {
   return (
     <button>{title}</button>
   );
@@ -400,9 +400,12 @@ layout: two-cols-header
 _Image.js_
 
 ```javascript
-const Image = ({url, text}) => {
+const Image = ({url, text, buttonText}) => {
   return (
-    <img src={url} alt={text}>
+    <>
+      <img src={url} alt={text}>
+      <button>{buttonText}</button>
+    </>
   );
 };
 
@@ -688,8 +691,8 @@ const Article = ({ id }) => {
       const fetchData = async () => {
           const response = await fetch(
             `https://jsonplaceholder.typicode.com/posts/${id}`);
-          const data = await response.json();
-          setData(data);
+          const respObj = await response.json();
+          setData(respObj);
       }
       fetchData();
   }, [id]);
@@ -1000,7 +1003,14 @@ Develop a React application that enables users to shorten long URLs into concise
 # Practical Projects: Integrating React, Routing, and APIs (I)
 ## Project 1: Link Shrinker: Shorten and Share Your Links
 
-TODO: Link to codesandbox.io/.io
+[![Edit LinkShrinker](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/linkshrinker-kzs6zj?fontsize=14&hidenavigation=1&module=%2Fsrc%2FURLShrinker.js&theme=dark)
+
+<iframe src="https://codesandbox.io/embed/linkshrinker-kzs6zj?fontsize=14&hidenavigation=1&theme=dark"
+     style="width:100%; height:75%; border:0; border-radius: 4px; overflow:hidden;"
+     title="LinkShrinker"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
 
 ---
 
