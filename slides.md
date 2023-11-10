@@ -25,7 +25,10 @@ selectable: true
 download: false
 ---
 
-# React.js
+# React
+<div class="flex justify-center text-center">
+    <svg width="100%" height="100%" viewBox="-10.5 -9.45 21 18.9" fill="none" xmlns="http://www.w3.org/2000/svg" class="mt-4 mb-3 text-link dark:text-link-dark w-24 lg:w-28 self-center text-sm me-0 flex origin-center transition-all ease-in-out"><circle cx="0" cy="0" r="2" fill="#087ea4"></circle><g stroke="#087ea4" stroke-width="1" fill="none"><ellipse rx="10" ry="4.5"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(60)"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(120)"></ellipse></g></svg>
+</div>
 <div class="absolute left-30px bottom-30px">
 Fall 2023 &copy; Khalid Alharbi, Ph.D.
 </div>
@@ -64,21 +67,14 @@ Fall 2023 &copy; Khalid Alharbi, Ph.D.
 
 ---
 
-# Examples of Single Page Applications (SPAs)
+# Single Page Applications (SPAs) Frameworks
 
 - SPAs are often built using JavaScript frameworks or libraries like React, Angular, or Vue.js, which provide a structured way to manage the application's components, data, and UI updates. 
 
-- There are many SPAs that provide a rich user experience without constant page reloads:
-  - Gmail
-  - Google Maps
-  - Twitter
-  - Facebook
-  - Netflix
-  - Airbnb
-  - Trello
-  - Discord
-  - Pinterest
+![](/images/spa-libraries.png)
 
+- There are many SPAs that provide a rich user experience without constant page reloads:
+  - Gmail, Google Maps, Facebook, Netflix, Airbnb, and almost every modern day app is a SPA.
 
 ---
 
@@ -106,8 +102,12 @@ Fall 2023 &copy; Khalid Alharbi, Ph.D.
 - **2022**: React 18 is released with new features such as new hook for generating unique IDs on both the client and server.
 
 ---
+layout: two-cols-header
+---
 
 ## React Today 
+
+::left::
 
 - React continues to evolve and remains a dominant force in the development of web and mobile applications, with a large and active community of developers.
 
@@ -120,6 +120,10 @@ Fall 2023 &copy; Khalid Alharbi, Ph.D.
   - PayPal
   - DropBox
   - Pinterest
+
+::right::
+
+![](/images/uses-react/companies-use-react.png)
 
 ---
 
@@ -988,10 +992,25 @@ export default User;
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
+
 ---
 
-# Practical Projects: Integrating React, Routing, and APIs (I)
-## Project 1: Link Shrinker: Shorten and Share Your Links
+# Practical Projects
+## Integrating React, React-Router, and APIs
+
+<br />
+
+### Project 1: Link Shrinker: Shorten and Share Your Links
+
+<br />
+
+### Project 2: Recipe app: search for recipes
+
+---
+
+# Project 1: Link Shrinker (I)
+
+## Shorten and Share Your Links
 
 Develop a React application that enables users to shorten long URLs into concise and shareable links. The application should have the following features:
 
@@ -1000,8 +1019,7 @@ Develop a React application that enables users to shorten long URLs into concise
 
 ---
 
-# Practical Projects: Integrating React, Routing, and APIs (I)
-## Project 1: Link Shrinker: Shorten and Share Your Links
+# Project 1: Link Shrinker (II)
 
 [![Edit LinkShrinker](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/linkshrinker-kzs6zj?fontsize=14&hidenavigation=1&module=%2Fsrc%2FURLShrinker.js&theme=dark)
 
@@ -1012,23 +1030,27 @@ Develop a React application that enables users to shorten long URLs into concise
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
----
-
-# Practical Projects: Integrating React, Routing, and APIs
-## Project 2: Recipe app: search for recipes
-
-Create a React application that allows users to search for recipes.
-
-- Use an API, such as [Edamam API](https://www.edamam.com/) to fetch recipe data.
-- Implement routing using React Router to allow users to view individual recipes.
-- Display recipe details, including ingredients, instructions, and images.
 
 ---
 
-# Practical Projects: Integrating React, Routing, and APIs
-## Project 2: Recipe app: search for recipes
+# Project 2: Recipe app (I)
+## search for recipes
 
-TODO: Link to codesandbox.io/.io
+Create a React application that allows users to search for recipes and view recipe details including ingredients, instructions, and images.
+
+- We'll use a free API, [Spoonacular API](https://www.spoonacular.com/), to fetch recipes.
+  - [Sign up for an account and generate a new api key](https://spoonacular.com/food-api/console).
+  - Once you're logged in, navigate to the "Profile" section and view or generate an API key.
+  -  Read the docs on how to use the API end point [api.spoonacular.com/recipes/complexSearch](https://spoonacular.com/food-api/docs#Search-Recipes-Complex)
+  - Below is an example of using this end point. You may copy this into [Postman](https://www.postman.com/) and see the JSON response.
+  
+  ```shell
+  https://api.spoonacular.com/recipes/complexSearch?query=pasta&apiKey=PASTE_YOUR_API_KEY_HERE
+  ```
+
+---
+
+# Project 2: Recipe app (II)
 
 ---
 
