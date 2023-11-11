@@ -112,9 +112,7 @@ layout: two-cols-header
 - React continues to evolve and remains a dominant force in the development of web and mobile applications, with a large and active community of developers.
 
 - Examples of companies and platforms that use React:
-  - Facebook
-  - Instagram
-  - WhatsApp
+  - Meta (Facebook, Instagram, and WhatsApp)
   - Netflix
   - Airbnb
   - PayPal
@@ -136,11 +134,11 @@ layout: two-cols-header
     - **npx** is a package executer that executes javascript packages
   - Browser extensions for debugging your React app:
     - React Developer Tools for [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) OR [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
-  - An editor such as [Visual Studio Code](https://code.visualstudio.com/), which supports React.js out of the box.
+  - A code editor such as [Visual Studio Code](https://code.visualstudio.com/), which supports React.js out of the box.
 
 ## Alternatively, we can use a cloud-based IDE
-- [codesandbox.io](https://codesandbox.io/)
-- [replit.com](https://replit.com/)
+- [Code Sandbox](https://codesandbox.io/): We will use Code Sandbox for examples and exercises.
+- [Replit](https://replit.com/): is another online IDE that supports multiple languages.
 
 ---
 
@@ -1000,11 +998,11 @@ export default User;
 
 <br />
 
-### Project 1: Link Shrinker: Shorten and Share Your Links
+### Project 1: Link Shrinker - Shorten and Share Your Links
 
 <br />
 
-### Project 2: Recipe app: search for recipes
+### Project 2: Recipe Finder - search for recipes
 
 ---
 
@@ -1033,7 +1031,7 @@ Develop a React application that enables users to shorten long URLs into concise
 
 ---
 
-# Project 2: Recipe app (I)
+# Project 2: Recipe Finder (I)
 ## search for recipes
 
 Create a React application that allows users to search for recipes and view recipe details including ingredients, instructions, and images.
@@ -1050,7 +1048,17 @@ Create a React application that allows users to search for recipes and view reci
 
 ---
 
-# Project 2: Recipe app (II)
+# Project 2: Recipe Finder (II)
+
+[![Edit cpit405/react-recipe-finder/main](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/github/cpit405/react-recipe-finder/main?import=true&embed=1&file=%2Fsrc%2FApp.js)
+
+<iframe src="https://codesandbox.io/p/github/cpit405/react-recipe-finder/main?import=true&embed=1&file=%2Fsrc%2FApp.js"
+     style="width:100%; height: 75%; border:0; border-radius: 4px; overflow:hidden;"
+     title="cpit405/react-recipe-finder/main"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
 
 ---
 
