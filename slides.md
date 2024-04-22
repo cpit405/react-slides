@@ -22,7 +22,15 @@ css: unocss
 # Make content selectable/copyable
 selectable: true
 # Make slides downloadable as PDF
-download: false
+download: true
+exportFilename: react-slides
+export:
+  format: pdf
+  timeout: 30000
+  dark: false
+  withClicks: false
+  withToc: false
+hideInToc: true
 ---
 
 # React
@@ -30,24 +38,16 @@ download: false
     <svg width="100%" height="100%" viewBox="-10.5 -9.45 21 18.9" fill="none" xmlns="http://www.w3.org/2000/svg" class="mt-4 mb-3 text-link dark:text-link-dark w-24 lg:w-28 self-center text-sm me-0 flex origin-center transition-all ease-in-out"><circle cx="0" cy="0" r="2" fill="#087ea4"></circle><g stroke="#087ea4" stroke-width="1" fill="none"><ellipse rx="10" ry="4.5"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(60)"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(120)"></ellipse></g></svg>
 </div>
 <div class="absolute left-30px bottom-30px">
-Fall 2023 &copy; Khalid Alharbi, Ph.D.
+Spring 2024 &copy; Khalid Alharbi, Ph.D.
 </div>
 
 ---
 
-# Outline
-- Single Page Applications (SPAs)
-- React.js
-- Setting up your development environment
-- Creating your first React app
-- JSX
-- React components
-- Props
-- State
-- AJAX and APIs
-- Hooks
-- Routing with React Router
-- Practical Projects
+## Table of Contents
+
+<br>
+
+<Toc columns="1" maxDepth="1" mode="all" class="toc-list"/>
 
 ---
 
@@ -58,7 +58,7 @@ Fall 2023 &copy; Khalid Alharbi, Ph.D.
 - Traditional multi-page applications (MPAs) load a new HTML page for each new view or interaction.
 ---
 
-# Why Single Page Applications (SPAs)
+## Why Single Page Applications (SPAs)
 
 - **Faster performance:** SPAs are typically faster than MPAs because they do not have to reload the entire page for each new view or interaction. This is because SPAs use JavaScript to dynamically update the DOM (Document Object Model) of the page.
 - **Better user experience:** SPAs can provide a more fluid user experience because there is no need to wait for a new page to load when the user interacts with the application. This can make SPAs feel more like native desktop applications.
@@ -67,7 +67,7 @@ Fall 2023 &copy; Khalid Alharbi, Ph.D.
 
 ---
 
-# Single Page Applications (SPAs) Frameworks
+## Single Page Applications (SPAs) Frameworks
 
 - SPAs are often built using JavaScript frameworks or libraries like React, Angular, or Vue.js, which provide a structured way to manage the application's components, data, and UI updates. 
 
@@ -78,7 +78,7 @@ Fall 2023 &copy; Khalid Alharbi, Ph.D.
 
 ---
 
-# Single Page Applications (SPAs) Timeline:
+## Single Page Applications (SPAs) Timeline:
 
 - **2002**: The concept of a single page application is introduced with the development of Outlook on the web by Microsoft, which used AJAX to enable a more desktop-like web application experience.
 - **Late 2000s**: Google's Gmail and Google Maps popularize SPAs by providing fast and responsive user experiences through AJAX and dynamic updates.
@@ -90,7 +90,7 @@ Fall 2023 &copy; Khalid Alharbi, Ph.D.
 
 ---
 
-# React Timeline
+## React Timeline
 
 - **2011**: React was internally released by Jordan Walke, a software engineer at Facebook. He created React in response to the challenges he faced while developing Facebook's News Feed.
 - **2013**: React is open-sourced, allowing external developers to use and contribute to its development.
@@ -142,7 +142,7 @@ layout: two-cols-header
 
 ---
 
-# Getting Started in React (II)
+## Getting Started in React (II)
 ## Create a React.js app
 
 - Create a new React project by running the following command:
@@ -163,7 +163,7 @@ npm start
 
 ---
 
-# Getting started in React (III) 
+## Getting started in React (III) 
 ## Demo
 
 <iframe src="https://codesandbox.io/embed/first-react-app-8m9dwz?fontsize=14&hidenavigation=1&theme=light"
@@ -176,7 +176,7 @@ npm start
 ---
 layout: center
 ---
-# React has three main files:
+## React has three main files:
 
 ### 1. Main HTML file `public/index.html`
 ### 2. Main script file `src/index.js`
@@ -184,7 +184,7 @@ layout: center
 
 ---
 
-# Main HTML file `public/index.html`
+## Main HTML file `public/index.html`
 - React has a single/main HTML file (`index.html`) located in the _public_ folder.
 - The _public_ folder is the location where the main HTML file and other static assets such as images, fonts, and favicon are stored.
 - It is the entry point of the application and contains a root DOM element where the React application is mounted.
@@ -205,7 +205,7 @@ layout: center
 
 ---
 
-# Main script file `src/index.js`
+## Main script file `src/index.js`
 
 - In a React project, `src/index.js` is the entry point of the application. 
 - This file is responsible for rendering the root component of the application and mounting it to the DOM.
@@ -228,7 +228,7 @@ root.render(
 
 ---
 
-# Main component file `src/App.js`
+## Main component file `src/App.js`
 
 - In a React project, `src/App.js` is a JavaScript file that contains the main component of the application.
 - This component is usually called App and is responsible for rendering the main content of the application.
@@ -278,7 +278,7 @@ This makes it easier to debug and maintain the application.
 
 ---
 
-# React Components Example
+## React Components Example
 
 _Button.js_
 
@@ -296,7 +296,7 @@ export default Button;
 
 ---
 
-# React Components: Class Components
+## React Components: Class Components
 
 - A class component in React is a JavaScript class that extends the `React.Component` class.
 - Class components are more verbose and complex to write than functional components.
@@ -316,7 +316,7 @@ class Button extends React.Component{
 
 ---
 
-# React Components: Functional Components
+## React Components: Functional Components
 
 - A functional component in React is a JavaScript function that returns JSX.
 - Functional components are the preferred way to write React components, as they are more concise and easier to write than class components.
@@ -339,7 +339,7 @@ const Button = () => {
 
 ---
 
-# React Components: Class vs Functional
+## React Components: Class vs Functional
 
 
 | Class components | Functional components |
@@ -355,7 +355,7 @@ layout: two-cols-header
 
 
 
-# React Components: Props
+# Props
 
 ::left::
 
@@ -391,7 +391,7 @@ const App = () => {
 layout: two-cols-header
 ---
 
-# React Components: Receiving Props
+## Receiving Props
 
 #### There are two ways a component receives multiple props from a parent component:
 
@@ -452,7 +452,7 @@ const App = () => {
 
 ---
 
-# React Components: Props Demo
+## Props Demo
 - Please see
   -  `src/Button.js`, `src/Header.js`, and `src/Footer.js` for receiving props as an object.
   - `src/Image.js` for receiving props as a list of variables.
@@ -467,7 +467,7 @@ const App = () => {
 
 ---
 
-# React Components: State
+# State
 - While "props" is immutable/read-only, state is not.
 - Components can also manage their own state, which can be modified using the `setState` method.
 - State is private to the component and can only be modified by the component itself.
@@ -478,7 +478,7 @@ const App = () => {
 
 ---
 
-# React Components: `useState`
+## `useState`
 - In programming "**State**" refers to stored information at a particular point in time.
   - Think of _state_ as a fancy name for saying variable 🤔
   - State can change over time, and each change represents a different state.
@@ -497,7 +497,7 @@ const [state, setState] = useState(initialState);
 
 ---
 
-# React Components: State Example
+## State Example
 
 _App.js_
 
@@ -530,7 +530,7 @@ export default Button;
 
 ---
 
-# React Components State Demo (I)
+## State Demo (I)
 [![Edit use-state-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/use-state-example-sfhr2n?fontsize=14&hidenavigation=1&module=%2Fsrc%2FButton.js&theme=dark)
 
 <iframe src="https://codesandbox.io/embed/use-state-example-sfhr2n?fontsize=14&hidenavigation=1&module=%2Fsrc%2FButton.js&theme=dark"
@@ -543,7 +543,7 @@ export default Button;
 
 ---
 
-# React Components State Demo (II)
+## State Demo (II)
 
 [![Edit react-state-like-dislike](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-state-like-dislike-66qgjj?fontsize=14&hidenavigation=1&module=%2Fsrc%2FFeedback.js&theme=dark)
 
@@ -557,7 +557,7 @@ export default Button;
 ---
 layout: two-cols-header
 ---
-# React Components: Props vs State
+## Props vs State
 
 | Props | State |
 |------------------|-----------------------|
@@ -601,7 +601,7 @@ export default Button;
 
 ---
 
-## AJAX and APIs
+# AJAX and APIs
 - Data is essential for any application to function.
 - Fetching and sending data provides the information that our components need to work.
 - There are two ways to work with APIs and use fetch in React apps.
@@ -611,7 +611,7 @@ export default Button;
 ---
 layout: two-cols
 ---
-# Using `fetch` and `setState`
+## Using `fetch` and `setState`
 - This example shows how to fetch data in response to a user click event.
 - We send the request in the event handler and `setData` is the function that updates the _data_ state. 
 -  The component renders the fetched data once the data becomes available.
@@ -631,7 +631,7 @@ layout: two-cols
 
 ---
 
-# Using `fetch` and `setState` Demo
+## Using `fetch` and `setState` Demo
 
 [![Edit react-regular-fetch-async-await](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-regular-fetch-async-await-rrx4j9?fontsize=14&hidenavigation=1&module=%2Fsrc%2FGitHubUser.js&theme=dark)
 
@@ -646,7 +646,7 @@ layout: two-cols
 layout: two-cols-header
 ---
 
-# Using `fetch ` and `useEffect`
+## Using `fetch ` and `useEffect`
 
 ::left::
 
@@ -710,7 +710,7 @@ const Article = ({ id }) => {
 
 ---
 
-#  `useEffect`
+##  `useEffect`
 - `useEffect` is a built-in hook in React that allows you to perform side effects in your function components. 
 - A side effect could be data fetching, subscribing to a service, manually changing the DOM, etc.
 
@@ -719,7 +719,7 @@ const Article = ({ id }) => {
 
 ---
 
-# Using `fetch ` and `useEffect`
+## Using `fetch ` and `useEffect`
 - `useEffect` is a React hook hook for performing side effects in components.
 
 <v-click>
@@ -750,7 +750,7 @@ const Article = ({ id }) => {
 
 ---
 
-# Using `fetch ` and `useEffect` (Demo)
+## Using `fetch ` and `useEffect` (Demo)
 [![Edit react-fetch-useEffect](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-fetch-useeffect-nmd9py?fontsize=14&hidenavigation=1&module=%2Fsrc%2FGitHubUser.js&theme=dark)
 
 <iframe src="https://codesandbox.io/embed/react-fetch-useeffect-nmd9py?fontsize=14&hidenavigation=1&module=%2Fsrc%2FGitHubUser.js&theme=dark"
@@ -780,7 +780,7 @@ layout: center
 
 ---
 
-# Routing in React
+## Routing in React
 
 - Recall that React is often considered the "V" in MVC, which stands for Model-View-Controller.
   - React does not have a built-in concept of a "Controller" or routing.
@@ -824,7 +824,7 @@ export default App;
 
 ---
 
-# React Router: Main Concepts
+## React Router: Main Concepts
   - **Routes:** Routes group the different route for pages or views in your application.
   - **Route:** An object or Route Element typically with a shape of  `{ path, element }` or `<Route path element>`
   - **Navigation:** Any change to the URL. There are two ways to navigate in React Router:
@@ -835,7 +835,7 @@ export default App;
 layout: two-cols-header
 ---
 
-# React Router: Declarative Navigation
+## React Router: Declarative Navigation
 - We define routes explicitly and link to them using the `<Link>` component.
   - The `<Link>` component is a declarative way to navigate between routes. It renders an HTML `<a>` tag with a `href` attribute that points to the desired route.
 
@@ -872,7 +872,7 @@ export default App;
 layout: two-cols-header
 ---
 
-# React Router: Imperative navigation
+## React Router: Imperative navigation
 
 - To navigate in code (programmatically), we use the `useNavigate` hook in React Router.
 
@@ -914,7 +914,7 @@ export default Header;
 
 ---
 
-# React Router: Nested Routes, URL parameters, and Query parameters
+## React Router: Nested Routes, URL parameters, and Query parameters
 
 - Nested routing allows you to organize your routes into hierarchies, making it easier to manage complex navigation structures.
 - We can use nested routes to access **URL parameters** and **query parameters** using the `useParams` and `useSearchParams` hooks respectively.
@@ -980,7 +980,7 @@ export default User;
 
 ---
 
-# React Router Demo
+## React Router Demo
 [![Edit react-router-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-router-example-z63d7g?fontsize=14&hidenavigation=1&module=%2Fsrc%2FApp.js&theme=dark)
 
 <iframe src="https://codesandbox.io/embed/react-router-example-z63d7g?fontsize=14&hidenavigation=1&module=%2Fsrc%2FApp.js&theme=dark"
@@ -1006,9 +1006,9 @@ export default User;
 
 ---
 
-# Project 1: Link Shrinker (I)
+## Project 1: Link Shrinker (I)
 
-## Shorten and Share Your Links
+### Shorten and Share Your Links
 
 Develop a React application that enables users to shorten long URLs into concise and shareable links. The application should have the following features:
 
@@ -1017,7 +1017,7 @@ Develop a React application that enables users to shorten long URLs into concise
 
 ---
 
-# Project 1: Link Shrinker (II)
+## Project 1: Link Shrinker (II)
 
 [![Edit LinkShrinker](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/linkshrinker-kzs6zj?fontsize=14&hidenavigation=1&module=%2Fsrc%2FURLShrinker.js&theme=dark)
 
@@ -1031,8 +1031,8 @@ Develop a React application that enables users to shorten long URLs into concise
 
 ---
 
-# Project 2: Recipe Finder (I)
-## search for recipes
+## Project 2: Recipe Finder (I)
+### search for recipes
 
 Create a React application that allows users to search for recipes and view recipe details including ingredients, instructions, and images.
 
@@ -1048,7 +1048,7 @@ Create a React application that allows users to search for recipes and view reci
 
 ---
 
-# Project 2: Recipe Finder (II)
+## Project 2: Recipe Finder (II)
 
 [![Edit cpit405/react-recipe-finder/main](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/github/cpit405/react-recipe-finder/main?import=true&embed=1&file=%2Fsrc%2FApp.js)
 
@@ -1062,7 +1062,7 @@ Create a React application that allows users to search for recipes and view reci
 
 ---
 
-# Putting all things together
+## Putting all things together
 
 It's time to put your React skills into test and build a React app. In a group of two students, create one of the following apps:
 
@@ -1079,7 +1079,7 @@ Create a React application that displays the current weather conditions for a sp
 
 ---
 
-# Wrapping up
+## Wrapping up
 - **React.js**: is a JavaScript library for building user interfaces (UIs) based on reusable components.
 - **Props**: immutable (read-only) data passed from parent components to child components to control their behavior and content.
 - **State**: mutable (changeable) data managed by a component, determining its appearance and value.

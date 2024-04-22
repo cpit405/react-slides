@@ -1,26 +1,28 @@
-:not(pre) > code::before, :not(pre) > code::after {
+:not(pre)>code::before,
+:not(pre)>code::after {
 	content: "";
 }
-table th, table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
+
+.slidev-layout code {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-table th {
-  background-color: #3f6149;
-  color: #fff;
+img {
+	border: 1px solid #000;
 }
 
-table tr:nth-child(even) {
-  background-color: #bdbdbd;
-  color: #0c5321;
+footer {
+	text-align: center;
 }
 
-.code-section {
-	border: 2px solid #565656;
+.slidev-code {
+	border: #ddd solid 1px;
 }
 
-pre.slidev-code{
-  margin-right: 5%;
+iframe.jsfiddle {
+	border: #ddd solid 1px;
+}
+
+.toc-list ol {
+	list-style-type: disc;
 }
