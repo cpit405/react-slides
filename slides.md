@@ -1,8 +1,8 @@
 ---
 # try also 'default' to start simple
 theme: default
-title: 'React.js'
-titleTemplate: '%s - CPIT-405'
+title: "React.js"
+titleTemplate: "%s - CPIT-405"
 # apply any windi css classes to the current slide
 class: text-center
 # https://sli.dev/custom/highlighters.html
@@ -10,8 +10,8 @@ highlighter: shiki
 # show line numbers in code blocks
 lineNumbers: true
 # some information about the slides, markdown enabled
-info: | 
-    React.js
+info: |
+  React.js
 # persist drawings in exports and build
 drawings:
   persist: false
@@ -989,6 +989,267 @@ export default User;
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
+
+
+---
+
+# Authentication and Protected Routes in React Router
+## Firebase Authentication in React
+
+- Create a new react app
+```shell
+npx create-react-app firebase-auth-demo
+```
+- Install firebase and react-router-dom libraries 
+
+```shell
+npm install firebase react-router-dom
+```
+- Create a new Firebase project at [console.firebase.google.com](https://console.firebase.google.com)
+- Enable Authentication (Email/Password) in Firebase Console
+- Copy your Firebase config
+
+
+---
+
+## Firebase Configuration
+- create a new file `firebase.js` under `/src/` and add your Firebase config
+
+```javascript
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+
+const firebaseConfig = {
+  // Your Firebase config object from 
+  // the firebase dashboard
+};
+
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+```
+
+---
+
+## Create Authentication Context
+- Create a new file `src/contexts/AuthContext.jsx`
+
+```javascript
+import { createContext, useContext, useState, useEffect } from 'react';
+import { auth } from '../firebase';
+import { 
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+} from 'firebase/auth';
+
+const AuthContext = createContext();
+
+export const useAuth = () => useContext(AuthContext);
+
+export function AuthProvider({ children }) {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setLoading(false);
+    });
+    return unsubscribe;
+  }, []);
+
+  const signup = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  const login = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  const logout = () => {
+    return signOut(auth);
+  };
+
+  const value = {
+    user,
+    signup,
+    login,
+    logout
+  };
+
+  return (
+    <AuthContext.Provider value={value}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
+}
+```
+
+
+---
+
+## Protected Route Component
+- Create a custom component that wraps up protected routes
+- Crate a new file `src/components/ProtectedRoute.jsx`
+
+```javascript
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+
+export default function ProtectedRoute({ children }) {
+  const { user } = useAuth();
+  
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
+  
+  return children;
+}
+
+```
+---
+
+## Create a Login Component
+- Create a new Login component at `src/components/Login.jsx`
+
+```javascript
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+
+export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      await login(email, password);
+      navigate('/dashboard');
+    } catch (error) {
+      setError('Failed to login');
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      {error && <div style={{color: 'red'}}>{error}</div>}
+      <div>
+        <label>Email</label>
+        <input 
+          type="email" 
+          value={email}
+          onChange={(e) => setEmail(e.target.value)} 
+        />
+      </div>
+      <div>
+        <label>Password</label>
+        <input 
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  );
+}
+``` 
+
+---
+
+## Create a Private/Protected Component
+- Create a new Dashboard component at `src/components/Dashboard.jsx`
+- This component will be restricted to authenticated users
+
+```javascript
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+
+export default function Dashboard() {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  async function handleLogout() {
+    try {
+      await logout();
+      navigate('/login');
+    } catch {
+      console.error('Failed to logout');
+    }
+  }
+
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      <p>Welcome {user.email}</p>
+      <button onClick={handleLogout}>Logout</button>
+    </div>
+  );
+}
+```
+
+---
+
+## Setting up the main App Component with Routes
+
+- Now we can set up the main App component `App.js`
+
+```javascript
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
+import Home from './components/Home';
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
+
+function App() {
+  return (
+    <Router>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route 
+            path="/dashboard" 
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } 
+          />
+        </Routes>
+      </AuthProvider>
+    </Router>
+  );
+}
+
+export default App;
+```
+
+---
+
+## Run and test the Implementation
+
+- Start the server:
+
+```shell
+npm start 
+```
+
+---
+
+## Wrapping up Authentication
+
+- Always wrap your app with `AuthProvider`
+- Use `useAuth` hook to access authentication state
+- Protect routes using `ProtectedRoute` component
+- Handle loading states appropriately
+- Use `navigate` for programmatic navigation in react-router
 
 
 ---
