@@ -38,7 +38,7 @@ hideInToc: true
     <svg width="100%" height="100%" viewBox="-10.5 -9.45 21 18.9" fill="none" xmlns="http://www.w3.org/2000/svg" class="mt-4 mb-3 text-link dark:text-link-dark w-24 lg:w-28 self-center text-sm me-0 flex origin-center transition-all ease-in-out"><circle cx="0" cy="0" r="2" fill="#087ea4"></circle><g stroke="#087ea4" stroke-width="1" fill="none"><ellipse rx="10" ry="4.5"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(60)"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(120)"></ellipse></g></svg>
 </div>
 <div class="absolute left-30px bottom-30px">
-Spring 2024 &copy; Khalid Alharbi, Ph.D.
+Fall 2024 &copy; Khalid Alharbi, Ph.D.
 </div>
 
 ---
@@ -993,26 +993,70 @@ export default User;
 
 ---
 
-# Authentication and Protected Routes in React Router
-## Firebase Authentication in React
+# Authentication and Protected Routes
+- Web applications contain public and private pages that are protected behind user authentication.
+- Authentication can be implemented by rolling your own authentication system or using a third-party provider
+- Rolling your own authentication system on the server:
+  - Requires robust security measures
+  - Adds significant security and maintenance challenges
+- Using third-party providers:
+  - Provides robust and scalable solutions
+  - Reduces the overhead of maintenance and updates
+  - Cuts development effort
+  - Examples: [Google Firebase](https://firebase.google.com/), [Amazon Cognito](https://aws.amazon.com/cognito/), and [Microsoft Azure Active Directory](https://azure.microsoft.com/en-us/products/active-directory-b2c/).
 
-- Create a new react app
+---
+
+## Firebase Authentication in React
+- We will use [Firebase](https://firebase.google.com/) for its popularity and ease of integration with React.
+- Firebase comes with no cost for the first 50,000 monthly active users
+- Create a new react app:
 ```shell
 npx create-react-app firebase-auth-demo
 ```
-- Install firebase and react-router-dom libraries 
+
+- Install Firebase and React-Router libraries:
 
 ```shell
 npm install firebase react-router-dom
 ```
+
+---
+
+## Setting up Firebase (I)
+
 - Create a new Firebase project at [console.firebase.google.com](https://console.firebase.google.com)
+- Click on *Project Settings*
+  - ![](/images/firebase-project-settings.png)
+- Scroll down to *Your Apps* and register your web app
+  - ![](/images/firebase-authentication-register-app.png)
+
+
+---
+layout: two-cols-header
+---
+
+## Setting up Firebase (II)
+
+::left::
 - Enable Authentication (Email/Password) in Firebase Console
 - Copy your Firebase config
+
+::right::
+<img src="/images/firebase-authentication-copy-config.png" alt="Copy Firebase config" style="width: 100%; max-width: 600px; max-height: 80%;" />
 
 
 ---
 
-## Firebase Configuration
+## Setting up Firebase (III)
+- Enable Authentication (Email/Password) in Firebase Console
+
+![Firebase Enable Authentication (Email/Password) in Firebase Console](/images/firebase-username-nd-password-auth.png)
+
+
+---
+
+## Setting up Firebase (IV)
 - create a new file `firebase.js` under `/src/` and add your Firebase config
 
 ```javascript
@@ -1033,7 +1077,7 @@ export const auth = getAuth(app);
 ## Create Authentication Context
 - Create a new file `src/contexts/AuthContext.jsx`
 
-```javascript
+```javascript {1-}{maxHeight:'70%'}
 import { createContext, useContext, useState, useEffect } from 'react';
 import { auth } from '../firebase';
 import { 
@@ -1113,7 +1157,7 @@ export default function ProtectedRoute({ children }) {
 ## Create a Login Component
 - Create a new Login component at `src/components/Login.jsx`
 
-```javascript
+```javascript{1-}{maxHeight:'80%'}
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -1166,7 +1210,7 @@ export default function Login() {
 - Create a new Dashboard component at `src/components/Dashboard.jsx`
 - This component will be restricted to authenticated users
 
-```javascript
+```javascript{1-}{maxHeight:'70%'}
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -1199,7 +1243,7 @@ export default function Dashboard() {
 
 - Now we can set up the main App component `App.js`
 
-```javascript
+```javascript{1-}{maxHeight:'70%'}
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -1251,6 +1295,11 @@ npm start
 - Handle loading states appropriately
 - Use `navigate` for programmatic navigation in react-router
 
+
+---
+
+# Deploying React Apps into GitHub pages
+... Soon to be added
 
 ---
 
