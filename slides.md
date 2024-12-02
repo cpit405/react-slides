@@ -1328,7 +1328,7 @@ layout: center
 
 ## Deploying React Apps into GitHub pages (Cont.)
 
-- The App should be live on GitHub pages
+- The web app should be live on GitHub pages
   - Example: https://cpit405.github.io/react-gh-pages/
   - Source code (package.json): [https://github.com/cpit405/react-gh-pages/](https://github.com/cpit405/react-gh-pages/blob/main/package.json) 
 
