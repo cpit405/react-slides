@@ -1305,6 +1305,7 @@ npm start
   "homepage": "https://username.github.io/repo-name",
 }
 ```
+
   - Replace `username` and `repo-name` with your username and repo name on GitHub.
 3. Install gh-pages
 ```shell
