@@ -1275,11 +1275,8 @@ function App() {
 export default App;
 ```
 
----
 
-## Run and test the Implementation
-
-- Start the server:
+- Run and test the Implementation
 
 ```shell
 npm start 
