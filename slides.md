@@ -1299,7 +1299,41 @@ npm start
 ---
 
 # Deploying React Apps into GitHub pages
-... Soon to be added
+1. Create a repo on GitHub, commit, and push to main.
+2. Edit your `package.json` file and add a `homepage` field:
+
+```javascript
+{
+  "name": "react-gh-pages",
+  "homepage": "https://username.github.io/repo-name",
+}
+```
+  - Replace `username` and `repo-name` with your username and repo name on GitHub.
+3. Install gh-pages
+```shell
+npm install gh-pages
+```
+4. Add deploy to scripts in package.json
+  
+  ```javascript
+    "scripts": {
+      "predeploy": "npm run build",
+      "deploy": "gh-pages -d build",
+  ```
+5. Deploy the web app by running 
+```shell
+npm run deploy
+```
+---
+layout: center
+---
+
+## Deploying React Apps into GitHub pages (Cont.)
+
+- The App should be live on GitHub pages
+  - Example: https://cpit405.github.io/react-gh-pages/
+  - Source code (package.json): [https://github.com/cpit405/react-gh-pages/](https://github.com/cpit405/react-gh-pages/blob/main/package.json) 
+
 
 ---
 
