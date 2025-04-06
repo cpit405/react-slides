@@ -38,7 +38,7 @@ hideInToc: true
     <svg width="100%" height="100%" viewBox="-10.5 -9.45 21 18.9" fill="none" xmlns="http://www.w3.org/2000/svg" class="mt-4 mb-3 text-link dark:text-link-dark w-24 lg:w-28 self-center text-sm me-0 flex origin-center transition-all ease-in-out"><circle cx="0" cy="0" r="2" fill="#087ea4"></circle><g stroke="#087ea4" stroke-width="1" fill="none"><ellipse rx="10" ry="4.5"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(60)"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(120)"></ellipse></g></svg>
 </div>
 <div class="absolute left-30px bottom-30px">
-Fall 2024 &copy; Khalid Alharbi, Ph.D.
+Spring 2025 &copy; Khalid Alharbi, Ph.D.
 </div>
 
 ---
@@ -93,13 +93,13 @@ Fall 2024 &copy; Khalid Alharbi, Ph.D.
 ## React Timeline
 
 - **2011**: React was internally released by Jordan Walke, a software engineer at Facebook. He created React in response to the challenges he faced while developing Facebook's News Feed.
-- **2013**: React is open-sourced, allowing external developers to use and contribute to its development.
-- **2015**: React gains rapid popularity within the developer community for its component-based architecture, virtual DOM, and one-way data flow.
+- **2013**: React is open-sourced (v0.3.0) on GitHub.
+- **2015**: React v0.15 gains popularity within the developer community for its component-based architecture, virtual DOM, and one-way data flow.
 - **2015**: React Native is introduced, extending React's concepts to mobile app development, enabling cross-platform app development.
-- **2016**: React switched to major versions and announces the new 15.0 release, which follows the previous 0.14 version. This was done to indicate that Facebook has been using React in production for a long time.
-- **2016**: [Create React App](https://create-react-app.dev/) was announced as an easy way to create and build React apps.
-- **2018**: The announcement of React Hooks, which adds new functions that simplify state management without writing a class component.
-- **2022**: React 18 is released with new features such as new hook for generating unique IDs on both the client and server.
+- **2016**: React switched to major versions and announces the new v15.0 release.
+- **2018**: React v16.8 introduced React Hooks, which adds new functions that simplify state management without writing a class component.
+- **2022**: React v18 is released with new features such as new hooks and APIs for rendering on the client and server.
+- **2024**: React v19 is released with new features such as Actions for async transitions, new hooks, `<form>` Actions and React Server Components.
 
 ---
 layout: two-cols-header
@@ -128,6 +128,8 @@ layout: two-cols-header
 # Getting Started in React (I)
 ## Installation
 
+<p class="absolute top-0 right-0 transform translate-x-6 translate-y-4 bg-[#087ea4] text-white py-1 px-10 shadow-md">React v19.1</p>
+
 - To get started in React, you will need to download and install the following:
   - [Node.js](https://nodejs.org) because we'll need npm and npx:
     - **npm** is the package manager for the JavaScript.
@@ -142,24 +144,120 @@ layout: two-cols-header
 
 ---
 
-## Getting Started in React (II)
-## Create a React.js app
-
+## Getting Started in React (II): Create a React.js app
+- We will use [Vite](https://vite.dev/) <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 256 257" class="inline-block align-text-bottom"><defs><linearGradient id="viteGradA" x1="-.828%" x2="57.636%" y1="7.652%" y2="78.411%"><stop offset="0%" stop-color="#41D1FF"></stop><stop offset="100%" stop-color="#BD34FE"></stop></linearGradient><linearGradient id="viteGradB" x1="43.376%" x2="50.316%" y1="2.242%" y2="89.03%"><stop offset="0%" stop-color="#FFEA83"></stop><stop offset="8.333%" stop-color="#FFDD35"></stop><stop offset="100%" stop-color="#FFA800"></stop></linearGradient></defs><path fill="url(#viteGradA)" d="M255.153 37.938L134.897 252.976c-2.483 4.44-8.862 4.466-11.382.048L.875 37.958c-2.746-4.814 1.371-10.646 6.827-9.67l120.385 21.517a6.537 6.537 0 0 0 2.322-.004l117.867-21.483c5.438-.991 9.574 4.796 6.877 9.62Z"></path><path fill="url(#viteGradB)" d="M185.432.063L96.44 17.501a3.268 3.268 0 0 0-2.634 3.014l-5.474 92.456a3.268 3.268 0 0 0 3.997 3.378l24.777-5.718c2.318-.535 4.413 1.507 3.936 3.838l-7.361 36.047c-.495 2.426 1.782 4.5 4.151 3.78l15.304-4.649c2.372-.72 4.652 1.36 4.15 3.788l-11.698 56.621c-.732 3.542 3.979 5.473 5.943 2.437l1.313-2.028l72.516-144.72c1.215-2.423-.88-5.186-3.54-4.672l-25.505 4.922c-2.396.462-4.435-1.77-3.759-4.114l16.646-57.705c.677-2.35-1.37-4.583-3.769-4.113Z"></path></svg>,pronounced like "veet", a build tool that is considered the modern standard for React development.
 - Create a new React project by running the following command:
 
-  ```shell
-  npx create-react-app hello-world
-  ```
+```shell
+npm create vite@latest hello-react -- --template react
+```
 
-- To start the development server, run:
+  - Replace `hello-react` with the name of your React app.
+- Navigate to the project directory:
+
+```
+cd hello-react
+```
+- Install the dependencies and start the development server:
 
 ```shell
-npm start
+npm install
+npm run dev
 ```
 
 - Open the app in your web browser
-- Edit the source code in your code editor.
+- Open the project in your code editor (e.g., VS Code).
 
+---
+
+## Getting Started in React (II): Create a React.js app using Vite (Demo)
+
+<div class="terminal-window bg-gray-900 rounded-md overflow-hidden shadow-xl my-4 font-mono text-sm">
+  <div class="terminal-header bg-gray-800 px-4 py-2 flex items-center">
+    <div class="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
+    <div class="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
+    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+    <div class="ml-4 text-gray-400 text-xs">Terminal</div>
+  </div>
+  <div class="terminal-content p-4 text-green-400 max-h-80 overflow-y-auto">
+    <div class="command-line">
+      <span class="text-purple-400">~$</span> <span class="command-text typing-animation">npm create vite@latest hello-react -- --template react</span>
+    </div>
+    <div class="typewriter-text">
+      <div class="line-1 opacity-0 animate-fade-in" style="animation-delay: 2500ms">
+        &gt; npx
+      </div>
+      <div class="line-2 opacity-0 animate-fade-in" style="animation-delay: 3200ms">
+        &gt; cva hello-react-with-vite --template react
+      </div>
+      <div class="line-3 opacity-0 animate-fade-in" style="animation-delay: 4000ms">
+        │
+      </div>
+      <div class="line-4 opacity-0 animate-fade-in" style="animation-delay: 4700ms">
+        ◇  Scaffolding project in /Users/khalid/Documents/courses/cpit-405/examples/hello-react-with-vite...
+      </div>
+      <div class="line-5 opacity-0 animate-fade-in" style="animation-delay: 5500ms">
+        │
+      </div>
+      <div class="line-6 opacity-0 animate-fade-in" style="animation-delay: 6200ms">
+        └  Done. Now run:
+      </div>
+      <div class="line-7 opacity-0 animate-fade-in" style="animation-delay: 6900ms">
+      </div>
+      <div class="line-8 opacity-0 animate-fade-in highlight-command" style="animation-delay: 7600ms; color: #f0f0f0">
+        &nbsp;&nbsp;cd hello-react
+      </div>
+      <div class="line-9 opacity-0 animate-fade-in highlight-command" style="animation-delay: 8300ms; color: #f0f0f0">
+        &nbsp;&nbsp;npm install
+      </div>
+      <div class="line-10 opacity-0 animate-fade-in highlight-command" style="animation-delay: 9000ms; color: #f0f0f0">
+        &nbsp;&nbsp;npm run dev
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+.animate-fade-in {
+  animation: fadeIn 600ms ease-in-out forwards;
+}
+
+.typing-animation {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #4ade80;
+  width: 0;
+  animation: 
+    typing 2s steps(40, end) forwards,
+    blink .75s step-end infinite;
+  animation-delay: 300ms;
+}
+
+.highlight-command {
+  font-weight: bold;
+}
+
+.terminal-window {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+</style>
 
 ---
 
@@ -176,19 +274,67 @@ npm start
 ---
 layout: center
 ---
+
 ## React has three main files:
 
-### 1. Main HTML file `public/index.html`
-### 2. Main script file `src/index.js`
-### 3. Main component file `src/App.js`
+<div class="grid grid-cols-3 gap-6 mt-8">
+  <div class="file-card p-4 rounded-lg border-2 border-[#087ea4] bg-gray-50 shadow-md transition-all hover:scale-105">
+    <div class="text-[#087ea4] font-bold mb-2 flex items-center text-xl">
+      <carbon:document-blank class="mr-2" /> HTML Entry
+    </div>
+    <div class="code-path bg-gray-100 p-1 rounded mb-2 text-sm">
+      <code>/index.html</code>
+    </div>
+    <p> or</p>
+       <div class="code-path bg-gray-100 p-1 rounded mb-2 text-sm">
+      <code>/public/index.html</code>
+    </div>
+    <p class="text-sm">Contains the root DOM node where React attaches your entire app</p>
+  </div>
+
+  <div class="file-card p-4 rounded-lg border-2 border-[#087ea4] bg-gray-50 shadow-md transition-all hover:scale-105">
+    <div class="text-[#087ea4] font-bold mb-2 flex items-center text-xl">
+      <carbon:application class="mr-2" /> JS Entry
+    </div>
+    <div class="code-path bg-gray-100 p-1 rounded mb-2 text-sm">
+      <code>src/main.jsx</code>
+    </div>
+        <p> or</p>
+       <div class="code-path bg-gray-100 p-1 rounded mb-2 text-sm">
+      <code>/src/index.jsx</code>
+    </div>
+    <p class="text-sm">Initializes React, renders the root component, and mounts it to the DOM</p>
+  </div>
+
+  <div class="file-card p-4 rounded-lg border-2 border-[#087ea4] bg-gray-50 shadow-md transition-all hover:scale-105">
+    <div class="text-[#087ea4] font-bold mb-2 flex items-center text-xl">
+      <carbon:application-web class="mr-2" /> Root Component
+    </div>
+    <div class="code-path bg-gray-100 p-1 rounded mb-2 text-sm">
+      <code>/src/App.jsx</code>
+    </div>
+    <p> or</p>
+       <div class="code-path bg-gray-100 p-1 rounded mb-2 text-sm">
+      <code>/src/App.js</code>
+    </div>
+    <p class="text-sm">Main component containing your application layout, routes, and core logic</p>
+  </div>
+</div>
+
+<div class="mt-8 p-3 bg-blue-50 rounded-lg border border-[#087ea4] max-w-lg mx-auto">
+  <div class="flex items-center">
+    <carbon:information class="text-[#087ea4] mr-2" />
+    <span class="text-sm">Modern React projects typically use the <code>.jsx</code> extension for files containing React's JSX syntax. More on JSX next.</span>
+  </div>
+</div>
 
 ---
 
-## Main HTML file `public/index.html`
-- React has a single/main HTML file (`index.html`) located in the _public_ folder.
-- The _public_ folder is the location where the main HTML file and other static assets such as images, fonts, and favicon are stored.
-- It is the entry point of the application and contains a root DOM element where the React application is mounted.
-- When the React application is built, the contents of the public folder are copied to the build folder, and the index.html file is updated to include the necessary links to the built CSS and JavaScript files
+## Main HTML file `index.html`
+- React has a single/main HTML file (`index.html`) located in the _root_ directory or _public_ directory.
+- The _public_ directory is the location where the main HTML file and other static assets such as images, fonts, and favicon are stored.
+- `index.html` is the entry point of the application and contains a root DOM element where the React application is mounted.
+- When the React application is built, the contents of the public directory are copied to the build directory, and the `index.html` file is updated to include the necessary links to the built CSS and JavaScript files
 
 ```html
 <!DOCTYPE html>
@@ -205,9 +351,9 @@ layout: center
 
 ---
 
-## Main script file `src/index.js`
+## Main script file `main.jsx`
 
-- In a React project, `src/index.js` is the entry point of the application. 
+- In a React project, `/src/main.jsx` or `/src/index.jsx` is the entry point of the application. 
 - This file is responsible for rendering the root component of the application and mounting it to the DOM.
 
 ```javascript
@@ -228,9 +374,9 @@ root.render(
 
 ---
 
-## Main component file `src/App.js`
+## Main component file `App.jsx`
 
-- In a React project, `src/App.js` is a JavaScript file that contains the main component of the application.
+- In a React project, `/src/App.jsx` is a JavaScript file that contains the main component of the application.
 - This component is usually called App and is responsible for rendering the main content of the application.
 - The App component is typically composed of other components that are responsible for rendering specific parts of the UI.
 
