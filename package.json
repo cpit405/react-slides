@@ -4,7 +4,7 @@
   "scripts": {
     "build": "slidev build --base /react-slides/",
     "dev": "slidev --open",
-    "export": "slidev export"
+    "export": "slidev export --timeout 6000"
   },
   "dependencies": {
     "@slidev/cli": "^0.42.10",
