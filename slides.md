@@ -22,14 +22,7 @@ css: unocss
 # Make content selectable/copyable
 selectable: true
 # Make slides downloadable as PDF
-download: true
-exportFilename: react-slides
-export:
-  format: pdf
-  timeout: 60000
-  dark: false
-  withClicks: false
-  withToc: false
+download: false
 hideInToc: true
 ---
 
