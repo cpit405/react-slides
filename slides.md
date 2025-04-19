@@ -124,16 +124,16 @@ layout: two-cols-header
 <p class="absolute top-0 right-0 transform translate-x-6 translate-y-4 bg-[#087ea4] text-white py-1 px-10 shadow-md">React v19.1</p>
 
 - To get started in React, you will need to download and install the following:
-  - [Node.js](https://nodejs.org) because we'll need npm and npx:
+  - [Node.js](https://nodejs.org) because we'll need npm:
     - **npm** is the package manager for the JavaScript.
-    - **npx** is a package executer that executes javascript packages
   - Browser extensions for debugging your React app:
     - React Developer Tools for [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) OR [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
   - A code editor such as [Visual Studio Code](https://code.visualstudio.com/), which supports React.js out of the box.
 
 ## Alternatively, we can use a cloud-based IDE
-- [Code Sandbox](https://codesandbox.io/): We will use Code Sandbox for examples and exercises.
-- [Replit](https://replit.com/): is another online IDE that supports multiple languages.
+- **Code Sandbox** at [https://codesandbox.io](https://codesandbox.io/): We will use Code Sandbox for most examples and exercises.
+- **StackBlitz** at [https://vite.new/react](https://vite.new/react)
+- **Replit** at [https://replit.com](https://replit.com/)
 
 ---
 
@@ -142,10 +142,10 @@ layout: two-cols-header
 - Create a new React project by running the following command:
 
 ```shell
-npm create vite@latest hello-react -- --template react
+npm create vite@latest
 ```
 
-  - Replace `hello-react` with the name of your React app.
+  - You will be prompted to enter the project name and select a framework (React), and then select a language or variant (JavaScript).
 - Navigate to the project directory:
 
 ```
@@ -165,48 +165,15 @@ npm run dev
 
 ## Getting Started in React (II): Create a React.js app using Vite (Demo)
 
-<div class="terminal-window bg-gray-900 rounded-md overflow-hidden shadow-xl my-4 font-mono text-sm">
+<div class="terminal-window bg-[#282a36] rounded-md overflow-hidden shadow-xl my-4 font-mono text-sm">
   <div class="terminal-header bg-gray-800 px-4 py-2 flex items-center">
     <div class="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
     <div class="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
     <div class="w-3 h-3 rounded-full bg-green-500"></div>
     <div class="ml-4 text-gray-400 text-xs">Terminal</div>
   </div>
-  <div class="terminal-content p-4 text-green-400 max-h-80 overflow-y-auto">
-    <div class="command-line">
-      <span class="text-purple-400">~$</span> <span class="command-text typing-animation">npm create vite@latest hello-react -- --template react</span>
-    </div>
-    <div class="typewriter-text">
-      <div class="line-1 opacity-0 animate-fade-in" style="animation-delay: 2500ms">
-        &gt; npx
-      </div>
-      <div class="line-2 opacity-0 animate-fade-in" style="animation-delay: 3200ms">
-        &gt; cva hello-react-with-vite --template react
-      </div>
-      <div class="line-3 opacity-0 animate-fade-in" style="animation-delay: 4000ms">
-        │
-      </div>
-      <div class="line-4 opacity-0 animate-fade-in" style="animation-delay: 4700ms">
-        ◇  Scaffolding project in /Users/khalid/Documents/courses/cpit-405/examples/hello-react-with-vite...
-      </div>
-      <div class="line-5 opacity-0 animate-fade-in" style="animation-delay: 5500ms">
-        │
-      </div>
-      <div class="line-6 opacity-0 animate-fade-in" style="animation-delay: 6200ms">
-        └  Done. Now run:
-      </div>
-      <div class="line-7 opacity-0 animate-fade-in" style="animation-delay: 6900ms">
-      </div>
-      <div class="line-8 opacity-0 animate-fade-in highlight-command" style="animation-delay: 7600ms; color: #f0f0f0">
-        &nbsp;&nbsp;cd hello-react
-      </div>
-      <div class="line-9 opacity-0 animate-fade-in highlight-command" style="animation-delay: 8300ms; color: #f0f0f0">
-        &nbsp;&nbsp;npm install
-      </div>
-      <div class="line-10 opacity-0 animate-fade-in highlight-command" style="animation-delay: 9000ms; color: #f0f0f0">
-        &nbsp;&nbsp;npm run dev
-      </div>
-    </div>
+  <div class="terminal-content p-4 text-green-400">
+    <img src="/images/npm-vite-react.gif" class="w-full" style="max-height: none;" />
   </div>
 </div>
 
@@ -263,6 +230,7 @@ npm run dev
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
   ></iframe>
+
 
 ---
 layout: center
@@ -329,6 +297,8 @@ layout: center
 - `index.html` is the entry point of the application and contains a root DOM element where the React application is mounted.
 - When the React application is built, the contents of the public directory are copied to the build directory, and the `index.html` file is updated to include the necessary links to the built CSS and JavaScript files
 
+<p style="padding-left:5px; margin:0px;font-size:0.80em;font-style:italic;border: 1px solid #ccc; border-bottom:none">index.html</p>
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -348,6 +318,10 @@ layout: center
 
 - In a React project, `/src/main.jsx` or `/src/index.jsx` is the entry point of the application. 
 - This file is responsible for rendering the root component of the application and mounting it to the DOM.
+
+<br/>
+
+<p style="padding-left:5px; margin:0px;font-size:0.80em;font-style:italic;border: 1px solid #ccc; border-bottom:none">main.jsx</p>
 
 ```javascript
 import React from 'react';
@@ -373,6 +347,8 @@ root.render(
 - This component is usually called App and is responsible for rendering the main content of the application.
 - The App component is typically composed of other components that are responsible for rendering specific parts of the UI.
 
+<p style="padding-left:5px; margin:0px;font-size:0.80em;font-style:italic;border: 1px solid #ccc; border-bottom:none">App.jsx</p>
+
 ```javascript
 import "./styles.css";
 
@@ -389,6 +365,8 @@ export default App;
 
 
 ---
+layout: two-cols
+---
 
 # JSX
 
@@ -400,7 +378,9 @@ export default App;
   - The HTML `for` attribute is called `htmlFor` in JSX.
 3. JavaScript code must be wrapped between two curly braces `{}`.
 
-<iframe width="100%" height="50%" src="//jsfiddle.net/kalharbi/m2j3skfw/embedded/js,html,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+::right::
+
+<iframe width="100%" height="100%" src="https://stackblitz.com/edit/vitejs-vite-4tvmhfve?embed=1&file=src%2FApp.jsx" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 
 ---
@@ -418,12 +398,12 @@ This makes it easier to debug and maintain the application.
 ---
 
 ## React Components Example
+<br/>
+<br />
 
-_Button.js_
+<p style="padding-left:5px; margin:0px;font-size:0.80em;font-style:italic;border: 1px solid #ccc; border-bottom:none">Button.jsx</p>
 
 ```javascript
-import React from 'react';
-
 const Button = () => {
   return (
     <button>Click me!</button>
@@ -441,10 +421,11 @@ export default Button;
 - Class components are more verbose and complex to write than functional components.
 - To implement a class component, we need to create a class that extends the React.Component class.
 
+<p style="padding-left:5px; margin:0px;font-size:0.80em;font-style:italic;border: 1px solid #ccc; border-bottom:none">Button.jsx</p>
 ```javascript
-import React from 'react';
+import { Component } from 'react';
 
-class Button extends React.Component{
+class Button extends Component{
   render() {
     return (
       <button>Click me!</button>
@@ -460,6 +441,8 @@ class Button extends React.Component{
 - A functional component in React is a JavaScript function that returns JSX.
 - Functional components are the preferred way to write React components, as they are more concise and easier to write than class components.
 
+<p style="padding-left:5px; margin:0px;font-size:0.80em;font-style:italic;border: 1px solid #ccc; border-bottom:none">Button.jsx</p>
+
 ```javascript
 const Button = () => {
   
@@ -473,6 +456,8 @@ const Button = () => {
     </button>
   );
 };
+
+export default Button;
 ```
 
 
@@ -504,7 +489,7 @@ layout: two-cols-header
 - To pass props to a component, you simply add them as attributes to the component element.
 
 ::right::
-_Button.js_
+<p style="padding-left:5px; margin:0px;font-size:0.80em;font-style:italic;border: 1px solid #ccc; border-bottom:none">Button.jsx</p>
 
 ```javascript
 const Button = ({title}) => {
@@ -516,7 +501,7 @@ const Button = ({title}) => {
 export default Button;
 ```
 
-_App.js_
+<p style="padding-left:5px; margin:0px;font-size:0.80em;font-style:italic;border: 1px solid #ccc; border-bottom:none">App.jsx</p>
 ```javascript
 import Button from './Button.js'
 const App = () => {
@@ -524,6 +509,7 @@ const App = () => {
     <Button title="Submit" />
   );
 };
+export default App;
 ```
 
 ---
@@ -538,8 +524,7 @@ layout: two-cols-header
 
 1. Receiving props as a list of variables.
 
-_Image.js_
-
+<p style="padding-left:5px; margin:0px;font-size:0.80em;font-style:italic;border: 1px solid #ccc; border-bottom:none">Image.jsx</p>
 ```javascript
 const Image = ({url, text, buttonText}) => {
   return (
@@ -549,52 +534,57 @@ const Image = ({url, text, buttonText}) => {
     </>
   );
 };
-
 export default Image;
 ```
 
-_App.js_
+<p style="padding-left:5px; margin:0px;font-size:0.80em;font-style:italic;border: 1px solid #ccc; border-bottom:none">App.jsx</p>
 ```javascript
-import Image from 'Image.js'
+import Image from 'Image.jsx'
 const App = () => {
   return (
-    <Image url="./logo.png" text="KAU logo" />
+    <Image url="./logo.png" text="KAU logo" 
+           buttonTest="Click me" />
   );
 };
+export default App;
 ```
 
 ::right::
 
 2. Receiving props as an object.
 
-_Image.js_
+<p style="padding-left:5px; margin:0px;font-size:0.80em;font-style:italic;border: 1px solid #ccc; border-bottom:none">Image.jsx</p>
 
 ```javascript
 const Image = (props) => {
   return (
-    <img src={props.url} alt={props.text}>
+    <>
+       <img src={props.url} alt={props.text}>
+       <button>{props.buttonText}</button>
+    </>
   );
 };
-
 export default Image;
 ```
 
-_App.js_
+<p style="padding-left:5px; margin:0px;font-size:0.80em;font-style:italic;border: 1px solid #ccc; border-bottom:none">App.jsx</p>
 ```javascript
-import Image from 'Image.js'
+import Image from 'Image.jsx'
 const App = () => {
   return (
-    <Image url="./logo.png" text="KAU logo" />
+    <Image url="./logo.png" text="KAU logo" 
+           buttonTest="Click me" />
   );
 };
+export default App
 ```
 
 ---
 
 ## Props Demo
 - Please see
-  -  `src/Button.js`, `src/Header.js`, and `src/Footer.js` for receiving props as an object.
-  - `src/Image.js` for receiving props as a list of variables.
+  -  `src/Button.jsx`, `src/Header.jsx`, and `src/Footer.jsx` for receiving props as an object.
+  - `src/Image.jsx` for receiving props as a list of variables.
 <iframe src="https://codesandbox.io/embed/react-props-example-lhwrqn?fontsize=14&hidenavigation=1&module=%2Fsrc%2FApp.js&theme=dark"
      style="width:100%; height:70%; border:0; border-radius: 4px; overflow:hidden;"
      title="react-props-example"
@@ -638,8 +628,7 @@ const [state, setState] = useState(initialState);
 
 ## State Example
 
-_App.js_
-
+<p style="padding-left:5px; margin:0px;font-size:0.80em;font-style:italic;border: 1px solid #ccc; border-bottom:none">App.jsx</p>
 ```javascript
 import "./styles.css";
 import Button from "./Button.js";
@@ -649,7 +638,7 @@ export default function App() {
 }
 ```
 
-_Button.js_
+<p style="padding-left:5px; margin:0px;font-size:0.80em;font-style:italic;border: 1px solid #ccc; border-bottom:none">Button.jsx</p>
 
 ```javascript
 import React, { useState } from "react";
@@ -705,9 +694,9 @@ layout: two-cols-header
 | Props are received as functional parameter| State is received via hooks inside the component | 
 
 ::left::
+<p style="padding-left:5px; margin:0px;font-size:0.80em;font-style:italic;border: 1px solid #ccc; border-bottom:none">Button.jsx  <span style="margin-left:20%">(Props Example)</span></p>
 <div class="code-section">
 ```javascript
-//Button.js
 function handleClick() {
     console.log("I have been clicked!");
 }
@@ -716,14 +705,15 @@ const Button = ({ name }) => {
     return <button onClick={handleClick}> {name}</button>
 }
 export default Button;
-// App.js
+// Usage in App.jsx
 <Button name="Sign up" />;
 ```
 </div>
 ::right:: 
+<p style="padding-left:5px; margin:0px;font-size:0.80em;font-style:italic;border: 1px solid #ccc; border-bottom:none">Button.jsx  <span style="margin-left:20%">(State Example)</span></p>
 <div class="code-section">
 ```javascript
-//Button.js
+import { useState } from 'react';
 const Button = ({ name }) => {
     const [buttonText, setButtonText] = useState(name);
     function handleClick() {
@@ -732,7 +722,7 @@ const Button = ({ name }) => {
     return <button onClick={handleClick}>{buttonText}</button>
 }
 export default Button;
-// App.js
+// Usage in App.jsx
 <Button name="Sign up" />;
 ```
 </div>
