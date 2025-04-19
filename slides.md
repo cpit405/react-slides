@@ -1141,13 +1141,15 @@ export default User;
 - Firebase comes with no cost for the first 50,000 monthly active users
 - Create a new react app:
 ```shell
-npx create-react-app firebase-auth-demo
+npm create vite@latest
 ```
 
+- Enter a name for the app (e.e., react-router-demo) and select React + JavaScript.
+- Go to the project directory `cd react-router-demo` and install the dependencies using `npm install`
 - Install Firebase and React-Router libraries:
 
 ```shell
-npm install firebase react-router-dom
+npm install firebase react-router
 ```
 
 ---
@@ -1408,7 +1410,7 @@ export default App;
 - Run and test the Implementation
 
 ```shell
-npm start 
+npm run dev 
 ```
 
 ---
