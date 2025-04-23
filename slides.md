@@ -924,11 +924,14 @@ layout: center
 ---
 
 # React Router
-- React Router can be installed via npm: `npm install react-router-dom` and use it as follows:
+
+<p class="absolute top-0 right-0 transform translate-x-6 translate-y-4 bg-[#087ea4] text-white py-1 px-10 shadow-md">React Router 7.5</p>
+
+- React Router can be installed via npm: `npm install react-router` and use it as follows:
 
 ```javascript
 import React from 'react';
-import {BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import {BrowserRouter, Routes, Route, Link } from "react-router";
 import Home from './Home';
 import About from './About';
 import NotFound from './NotFound';
@@ -978,7 +981,7 @@ layout: two-cols-header
 ::right::
 
 ```javascript
-import {BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import {BrowserRouter, Routes, Route, Link } from "react-router";
 const App = () => {
   return (
     <BrowserRouter>
@@ -1009,14 +1012,14 @@ layout: two-cols-header
 
 ### Usage:
 
-1. Import `BrowserRouter`, `Routes`, and `Route` from `react-router-dom` library.
+1. Import `BrowserRouter`, `Routes`, and `Route` from `react-router` library.
 2. Declare routes in the main component (`App.js`).
 3. Use the `useNavigate` hook anywhere you want to navigate programmatically to a route.
 
 ::right::
 
 ```javascript
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router";
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -1026,7 +1029,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 ```
 
 ```javascript
-import {useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router';
 const Header = () => {
     const navigate = useNavigate();
     function handleClick() {
@@ -1057,7 +1060,7 @@ layout: two-cols-header
 ::left::
 _App.js_
 ```javascript
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router";
     <BrowserRouter>
       <Routes>
         <Route path="/users" element={<Users />}>
@@ -1089,7 +1092,7 @@ _User.js_
 import { 
   useParams, 
   useSearchParams 
-  } from 'react-router-dom';
+  } from 'react-router';
 
 const User = () => {
  const params = useParams();
@@ -1171,7 +1174,7 @@ layout: two-cols-header
 
 ::left::
 - Enable Authentication (Email/Password) in Firebase Console
-- Copy your Firebase config
+- Copy your Firebase config (only `firebaseConfig` object)
 
 ::right::
 <img src="/images/firebase-authentication-copy-config.png" alt="Copy Firebase config" style="width: 100%; max-width: 600px; max-height: 80%;" />
@@ -1189,6 +1192,7 @@ layout: two-cols-header
 
 ## Setting up Firebase (IV)
 - create a new file `firebase.js` under `/src/` and add your Firebase config
+- Add the following code and paste the `firebaseConfig` object from the previous step.
 
 ```javascript
 import { initializeApp } from 'firebase/app';
@@ -1269,7 +1273,7 @@ export function AuthProvider({ children }) {
 - Crate a new file `src/components/ProtectedRoute.jsx`
 
 ```javascript
-import { Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function ProtectedRoute({ children }) {
@@ -1290,7 +1294,7 @@ export default function ProtectedRoute({ children }) {
 
 ```javascript{1-}{maxHeight:'80%'}
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function Login() {
@@ -1343,7 +1347,7 @@ export default function Login() {
 
 ```javascript{1-}{maxHeight:'70%'}
 import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 export default function Dashboard() {
   const { user, logout } = useAuth();
@@ -1375,7 +1379,7 @@ export default function Dashboard() {
 - Now we can set up the main App component `App.js`
 
 ```javascript{1-}{maxHeight:'70%'}
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router';
 import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Home from './components/Home';
